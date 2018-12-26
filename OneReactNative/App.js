@@ -8,38 +8,52 @@ import {
   Image
  } from 'react-native';
 
+ class Janta extends Component{
+   
+  constructor(props){
+    super(props);
+    this.state = {comida:props.comida}
 
- class Imagem extends Component{
+    let comida = ['pizza', 'lasanha', 'Hamburguer', 'arroz']
+
+    setInterval(() =>{
+      this.setState(previousState =>{
+        var n = Math.floor( Math.random() * comida.length)
+
+        return {comidas: comida[n]};
+      })
+    }, 1000)
+   }
    render(){
-     let imagem={
-      uri:"https://abrilexame.files.wordpress.com/2018/04/gm-"+this.props.nome+".jpg"
-    }
      return(
-        <Image source={imagem} style={{width:parseInt(this.props.largura), height:parseInt(this.props.altura)}} />
-    )
+        <View>
+          <Text style={{
+            textAlign:"center",
+            height:100,
+            // width:100,
+            justifyContent:"center",
+            fontSize:50,
+            alignItems:'center'
+        }}>Hoje a Janta é</Text>
+          <Text style={{
+            textAlign:"center",
+            color:'red',
+            justifyContent:"center",
+            fontSize:50,
+            alignItems:'center'
+        }}>{this.state.comidas}</Text>
+        </View>
+     )
    }
  }
-
 export default class PrimeiroProjeto extends Component{
 
   render(){
       return(
         <View>
-        <Text style={styles.texto}>Olá Mundo</Text>
-        <Text>Olá Mundo</Text>
-        <Text>Olá Mundo</Text> 
-        <Text>Olá Mundo</Text>
-        <Text>Olá Mundo</Text>
-        <Text>Olá Mundo</Text>
-        {/* <Image source={{uri:"https://abrilexame.files.wordpress.com/2018/04/gm-tracker.jpg"}} style={{width:300,height:300}}/> */}
+        {/* <Text>Olá Mundo</Text> */}
 
-        <Imagem nome="tracker" altura="250" largura="250"/>
-
-        <Button title="Aperte" onPress={()=>{
-
-          alert('me apertou')
-          
-        }}/>
+        <Janta comida='Biscoitodfdas' />
         </View>
       );
   } 
